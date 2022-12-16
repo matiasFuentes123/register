@@ -1,12 +1,12 @@
+import { FC } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { FC, ReactNode } from "react";
 
 type Props = {};
 
-export const HomeScreen: FC<Props> = () => {
+export const SecondScreen: FC<Props> = () => {
   return (
     <View style={styles.container}>
-      <Text>Home Screen</Text>
+      <Text>Second Screen</Text>
     </View>
   );
 };
