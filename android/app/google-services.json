@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "433693011661",
+    "project_id": "empd-pruebas",
+    "storage_bucket": "empd-pruebas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433693011661:android:b047315f80e7ee10060384",
+        "android_client_info": {
+          "package_name": "com.empdigital.empprueba"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "433693011661-c8g42joqcrpqpokkdpj65elpd1i98gm5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpTyc7-AUSwfHVHdHgJKXGigfJLKLFPoA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "433693011661-c8g42joqcrpqpokkdpj65elpd1i98gm5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

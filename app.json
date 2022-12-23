@@ -1,5 +1,8 @@
 {
   "expo": {
+    "plugins": [
+      "@react-native-firebase/app"
+    ],
     "name": "emp-prueba",
     "slug": "emp-prueba",
     "version": "1.0.0",
@@ -21,10 +24,12 @@
       "supportsTablet": true
     },
     "android": {
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.empdigital.empprueba"
     },
     "web": {
       "favicon": "./assets/favicon.png"
