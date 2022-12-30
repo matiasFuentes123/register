@@ -1,30 +1,51 @@
 import { Entypo, MaterialIcons } from "@expo/vector-icons";
 import { useFormik } from "formik";
 import { FC, ReactNode, useEffect } from "react";
-import { StyleSheet, Text } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import { CustomButton } from "../../components/CustomButton";
 import { CustomTextField } from "../../components/CustomTextField";
 import { AuthLayout } from "../../layouts/AuthLayout";
+import { setInitialLogIn, signIn } from "../../redux/features/auth/authSlice";
+import { AuthState } from "../../redux/features/auth/AuthTypes";
+import { AppDispatch, RootState } from "../../redux/store/store";
 
 type Props = {
   children?: ReactNode;
 };
 
 export const LoginScreen: FC<Props> = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { logIn } = useSelector<RootState, AuthState>((state) => state.auth);
+
   useEffect(() => {
-    // onMount
-    return () => {
-      // onDestroy
-    };
-  }, []);
+    console.log(logIn);
+    if (logIn.state === "Failure") {
+      Alert.alert("Ha ocurrido un error", logIn.error, [
+        {
+          onPress: () => {
+            dispatch(setInitialLogIn());
+          },
+          text: "Aceptar",
+        },
+      ]);
+    }
+  }, [logIn]);
 
   const { values, errors, setFieldValue, handleSubmit } = useFormik({
     initialValues: {
       Email: "",
       Password: "",
     },
-    onSubmit: (values) => {},
+    onSubmit: (values) => {
+      dispatch(
+        signIn({
+          email: values.Email,
+          password: values.Password,
+        })
+      );
+    },
     validateOnChange: false,
     validateOnMount: false,
     validateOnBlur: false,
@@ -66,7 +87,18 @@ export const LoginScreen: FC<Props> = () => {
         }}
         secureTextEntry
       />
-      <CustomButton text="Ingresar" />
+      <CustomButton
+        text="Ingresar"
+        onPress={() => {
+          handleSubmit();
+        }}
+      />
+
+      <View style={styles.separatorWrapper}>
+        <View style={styles.line} />
+        <Text style={{ marginHorizontal: 5 }}> O Continuar con</Text>
+        <View style={styles.line} />
+      </View>
     </AuthLayout>
   );
 };
@@ -77,5 +109,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 24,
+  },
+  separatorWrapper: {
+    flexDirection: "row",
+    marginTop: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+  },
+  line: {
+    flex: 1,
+    backgroundColor: "gray",
+    height: 2,
   },
 });
