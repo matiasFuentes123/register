@@ -1,5 +1,9 @@
 import { authErrorCodes } from "../../../models/authErrorCodes";
-
+/**
+ * Sirve para traducir los errores de firebase Authentication 
+ * @param error 
+ * @returns un string con el error traducido
+ */
 export const mapedAuthError = (error: any) => {
   if (error.code) {
     if (error.code === authErrorCodes.INVALID_EMAIL) {

@@ -7,7 +7,9 @@ import { store } from "./src/redux/store/store";
 export default function App() {
   return (
     <View style={styles.container}>
+      {/* Aqui se Carga el Store de Redux */}
       <Provider store={store}>
+        {/* Aqui se coloca la navagacion */}
         <NavigationContainer>
           <MainStack />
         </NavigationContainer>

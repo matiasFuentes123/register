@@ -1,13 +1,14 @@
 import { FC, ReactNode } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 import { Colors } from "../constants/colors";
 
 type Props = {
   children?: ReactNode;
+  style?: StyleProp<ViewStyle>;
 };
 
-export const AuthLayout: FC<Props> = ({ children }) => {
-  return <View style={styles.container}>{children}</View>;
+export const AuthLayout: FC<Props> = ({ children, style }) => {
+  return <View style={[styles.container, style]}>{children}</View>;
 };
 
 const styles = StyleSheet.create({
