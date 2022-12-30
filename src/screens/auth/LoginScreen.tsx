@@ -1,9 +1,12 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { FC, memo, ReactNode, useEffect } from "react";
-import { CustomTextField } from "../../components/customTextField";
-import { MaterialIcons, Entypo } from "@expo/vector-icons";
+import { Entypo, MaterialIcons } from "@expo/vector-icons";
 import { useFormik } from "formik";
+import { FC, ReactNode, useEffect } from "react";
+import { StyleSheet, Text } from "react-native";
 import * as yup from "yup";
+import { CustomButton } from "../../components/CustomButton";
+import { CustomTextField } from "../../components/CustomTextField";
+import { AuthLayout } from "../../layouts/AuthLayout";
+
 type Props = {
   children?: ReactNode;
 };
@@ -21,9 +24,7 @@ export const LoginScreen: FC<Props> = () => {
       Email: "",
       Password: "",
     },
-    onSubmit: (values) => {
-
-    },
+    onSubmit: (values) => {},
     validateOnChange: false,
     validateOnMount: false,
     validateOnBlur: false,
@@ -36,10 +37,11 @@ export const LoginScreen: FC<Props> = () => {
     }),
   });
 
-
   return (
-    <View style={styles.container}>
-      <Text style={{ fontSize: 18, marginBottom: 20 }}>Ingreso de usuario</Text>
+    <AuthLayout>
+      <Text style={{ fontSize: 18, marginBottom: 20, textAlign: "center" }}>
+        Ingreso de usuario
+      </Text>
 
       <CustomTextField
         icon={({ color }) => (
@@ -64,10 +66,8 @@ export const LoginScreen: FC<Props> = () => {
         }}
         secureTextEntry
       />
-      <TouchableOpacity style={styles.button} onPress={() => handleSubmit()}>
-        <Text style={styles.text}>Ingresar</Text>
-      </TouchableOpacity>
-    </View>
+      <CustomButton text="Ingresar" />
+    </AuthLayout>
   );
 };
 
@@ -77,14 +77,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 24,
-  },
-  button: {
-    paddingHorizontal: 14,
-    paddingVertical: 7,
-    marginTop: 20,
-    backgroundColor: "green",
-  },
-  text: {
-    color: "white",
   },
 });

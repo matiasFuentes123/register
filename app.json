@@ -1,8 +1,5 @@
 {
   "expo": {
-    "plugins": [
-      "@react-native-firebase/app"
-    ],
     "name": "emp-prueba",
     "slug": "emp-prueba",
     "version": "1.0.0",
@@ -21,7 +18,9 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.empdigital.empprueba",
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "googleServicesFile": "./google-services.json",
@@ -33,6 +32,18 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "@react-native-firebase/app",
+      "expo-build-properties",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ]
+    ]
   }
 }

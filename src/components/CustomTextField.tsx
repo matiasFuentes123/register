@@ -22,11 +22,10 @@ export const CustomTextField: FC<Props> = ({
   style,
   ...props
 }) => {
-
   return (
     <View style={[styles.container, containerStyle]}>
       {Icon ? (
-        <View style={{ marginRight: 24 }}>{<Icon color={"black"} />}</View>
+        <View style={{ marginRight: 0 }}>{<Icon color={"black"} />}</View>
       ) : null}
       <TextInput style={[styles.textInput, style]} {...props} />
     </View>
@@ -34,7 +33,14 @@ export const CustomTextField: FC<Props> = ({
 };
 
 const styles = StyleSheet.create({
-  container: { width: "100%", flexDirection: "row" },
+  container: {
+    width: "100%",
+    flexDirection: "row",
+    backgroundColor: "white",
+    alignItems: "center",
+    paddingHorizontal: 10,
+    borderRadius: 12,
+  },
   textInput: {
     height: 48,
     paddingHorizontal: 12,
