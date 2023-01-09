@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import { CustomButton } from "../../components/CustomButton";
 import { CustomTextField } from "../../components/CustomTextField";
-import { AuthLayout } from "../../layouts/AuthLayout";
+import { AuthLayout } from "../../layouts/RegisterLayout";
 import { setInitialLogIn, signIn } from "../../redux/features/auth/authSlice";
 import { AuthState } from "../../redux/features/auth/AuthTypes";
 import { AppDispatch, RootState } from "../../redux/store/store";

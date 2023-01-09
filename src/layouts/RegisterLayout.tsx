@@ -7,14 +7,14 @@ type Props = {
   style?: StyleProp<ViewStyle>;
 };
 
-export const AuthLayout: FC<Props> = ({ children, style }) => {
+export const RegisterLayout: FC<Props> = ({ children, style }) => {
   return <View style={[styles.container, style]}>{children}</View>;
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.backgroundGray,
+    backgroundColor: Colors.background,
     paddingHorizontal: 24,
     justifyContent: "center",
   },

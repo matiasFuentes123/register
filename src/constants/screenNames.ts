@@ -8,4 +8,9 @@ export const screenNames = {
   LoginScreen: "LoginScreen",
   HomeDrawer: "HomeDrawer",
   LoadingScreen: "LoadingScreen",
+  StartScreen: "StartScreen",
+  FirstFormScreen: "FirstFormScreen",
+  SecondFormScreen: "SecondFormScreen",
+  ThirdFormScreen: "ThirdFormScreen",
+  FinalScreen: "FinalScreen",
 };

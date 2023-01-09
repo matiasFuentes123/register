@@ -31,6 +31,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    color: "white",
+    color: Colors.text,
   },
 });

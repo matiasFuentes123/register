@@ -1,7 +1,8 @@
 import { FC, ReactNode } from "react";
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import { Colors } from "../constants/colors";
-import { AuthLayout } from "../layouts/AuthLayout";
+// import { AuthLayout } from "../layouts/RegisterLayout";
+
 
 type Props = {
   children?: ReactNode;
@@ -9,16 +10,10 @@ type Props = {
 
 export const LoadingScreen: FC<Props> = () => {
   return (
-    <AuthLayout
-      style={{
-        backgroundColor: Colors.primary,
-      }}
-    >
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="white" />
-        <Text style={styles.text}>Cargando...</Text>
-      </View>
-    </AuthLayout>
+    <View style={styles.loadingContainer}>
+      <ActivityIndicator size="large" color="white" />
+      <Text style={styles.text}>Cargando...</Text>
+    </View>
   );
 };
 
