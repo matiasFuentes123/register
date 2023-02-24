@@ -2,9 +2,9 @@ import { FC } from "react";
 import {
   StyleProp,
   StyleSheet,
+  Text,
   TextInput,
   TextInputProps,
-  useWindowDimensions,
   View,
   ViewStyle,
 } from "react-native";
@@ -20,14 +20,21 @@ export const CustomTextField: FC<Props> = ({
   icon: Icon,
   containerStyle,
   style,
+  helperText,
+  error,
   ...props
 }) => {
   return (
-    <View style={[styles.container, containerStyle]}>
-      {Icon ? (
-        <View style={{ marginRight: 0 }}>{<Icon color={"black"} />}</View>
-      ) : null}
-      <TextInput style={[styles.textInput, style]} {...props} placeholderTextColor={Colors.text}/>
+    <View>
+      <View style={[styles.container, containerStyle]}>
+        {Icon ? (
+          <View style={{ marginRight: 0 }}>{<Icon color={"black"} />}</View>
+        ) : null}
+        <TextInput style={[styles.textInput, style]} {...props} placeholderTextColor={Colors.text} />
+      </View>
+    {helperText !== "" && error && (
+        <Text style={{ color: "red" }}>{helperText}</Text>
+      )}
     </View>
   );
 };
@@ -47,5 +54,6 @@ const styles = StyleSheet.create({
     height: 48,
     paddingHorizontal: 12,
     width: "100%",
+    color: "#fff"
   },
 });

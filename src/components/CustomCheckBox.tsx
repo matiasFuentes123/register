@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -9,22 +9,32 @@ import {
 import { Colors } from "../constants/colors";
 
 type Props = {
+  text: string
+  onChange: (value: Boolean) => void;
 } & TouchableOpacityProps;
 
-export const CustomCheckBox: FC<Props> = ({ ...props }) => {
+export const CustomCheckBox: FC<Props> = ({ onChange,...props }) => {
   const [active, setActive] = useState<Boolean>(false)
   const changeActive = () => {
     setActive(!active)
   }
+  useEffect(() => {
+    onChange(active)
+  }, [active])
+  
   return (
-    <TouchableOpacity style={styles.button} {...props} onPress={changeActive}>
-      {
-        active ? 
-        <View style={styles.checked}></View>
-        :
-        <></>
-      }
-    </TouchableOpacity>
+    <View style={styles.checkboxContainer}>
+      <TouchableOpacity style={styles.button} {...props} onPress={changeActive}>
+        {
+          active ? 
+          <View style={styles.checked}></View>
+          :
+          <></>
+        }
+        
+      </TouchableOpacity>
+      <Text style={styles.text}>{props.text}</Text>
+    </View>
   );
 };
 
@@ -44,5 +54,15 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     backgroundColor: Colors.primary
+  },
+  text: {
+    color: "#fff",
+    paddingLeft: 5
+  },
+  checkboxContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center"
   }
 });

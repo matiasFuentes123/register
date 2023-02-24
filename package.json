@@ -32,6 +32,7 @@
     "react-native-web": "~0.18.9",
     "react-navigation-stack": "react-navigation/stack",
     "react-redux": "^8.0.5",
+    "rut.js": "^2.1.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {

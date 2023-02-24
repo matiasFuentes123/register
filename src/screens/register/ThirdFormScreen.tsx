@@ -4,11 +4,19 @@ import { CustomButton } from '../../components/CustomButton'
 import { RegisterLayout } from '../../layouts/RegisterLayout'
 import { StackScreenProps } from "@react-navigation/stack";
 import { screenNames } from '../../constants/screenNames'
-import { CustomTextField } from '../../components/CustomTextField'
 import { CustomCheckBox } from '../../components/CustomCheckBox'
+import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
+import {
+  setThirdForm
+} from "../../redux/features/excersise/excersiseSlice";
+
+import { AppDispatch } from "../../redux/store/store";
+import { ThirdFormState } from '../../redux/features/excersise/ExcerciseTypes'
 
 interface Props extends StackScreenProps<any> {}
 export const ThirdFormScreen: FC<Props> = (props: Props) => {
+  const dispatch = useDispatch<AppDispatch>();
   const { navigation, ...other } = props;
   const navigateToSecondFormScreen = () => {
     navigation.navigate(screenNames.SecondFormScreen)
@@ -16,18 +24,38 @@ export const ThirdFormScreen: FC<Props> = (props: Props) => {
   const navigateToFinalScreen = () => {
     navigation.navigate(screenNames.FinalScreen)
   }
+  const {
+    values,
+    handleSubmit,
+    setFieldValue,
+  } = useFormik({
+    initialValues: {
+      pushNotification: false,
+      runInTheBackground: false,
+      hideMyName: false,
+    },
+    onSubmit: (values) => sendThirdFormToStore(values),
+    validateOnBlur: false,
+    validateOnChange: false
+  });
+  const submit = () => handleSubmit();
+
+  const sendThirdFormToStore = (thirdForm: ThirdFormState) => {
+    dispatch(setThirdForm(thirdForm))
+    navigateToFinalScreen()
+  }
   return (
     <RegisterLayout>
       <View style={styles.container}>
-        <View style={styles.textFieldsContainer}>
+        <View style={styles.checkboxContainer}>
           <View style={styles.textField}>
-            <CustomCheckBox />
+            <CustomCheckBox onChange={(value: Boolean) => setFieldValue("pushNotification", value)} text="Notificaciones push"/>
           </View>
           <View style={styles.textField}>
-            <CustomTextField placeholder="Contraseña" />
+            <CustomCheckBox onChange={(value: Boolean) => setFieldValue("runInTheBackground", value)} text="Funcionar en 2do plano"/>
           </View>
           <View style={styles.textField}>
-            <CustomTextField placeholder="Repetir constraseña" />
+            <CustomCheckBox onChange={(value: Boolean) => setFieldValue("hideMyName", value)} text="Ocultar mi nombre"/>
           </View>
         </View>
         <View style={styles.buttonsContainer}>
@@ -35,7 +63,7 @@ export const ThirdFormScreen: FC<Props> = (props: Props) => {
             <CustomButton text="Volver" onPress={navigateToSecondFormScreen} />
           </View>
           <View style={styles.buttonContainer}>
-            <CustomButton text="Siguiente" onPress={navigateToFinalScreen} />
+            <CustomButton text="Siguiente" onPress={submit} />
           </View>
         </View>
       </View>
@@ -56,6 +84,6 @@ const styles = StyleSheet.create({
     width: "53%",
  },
   buttonContainer: { padding: 10, width: "100%" },
-  textFieldsContainer: { flex: 1, justifyContent: "center" },
+  checkboxContainer: { flex: 1, justifyContent: "center", alignItems: "flex-start", width: "100%" },
   textField: { paddingTop: 5, paddingBottom: 5 }
 });
